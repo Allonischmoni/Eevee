@@ -8,5 +8,5 @@ public static class ModHelperData
     public const string Description = "New Eevee tower with three evolutions";
 
     public const string RepoOwner = "Allonischmoni"; // TODO add your github username hero, also in the download url in README.md
-    public const string RepoName = ""; // TODO add your repo name here, also in the download url in README.md
+    public const string RepoName = "Eevee"; // TODO add your repo name here, also in the download url in README.md
 }
