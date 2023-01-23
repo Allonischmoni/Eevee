@@ -5,6 +5,7 @@ using Il2CppAssets.Scripts.Models.Towers.Projectiles;
 using Il2CppAssets.Scripts.Unity;
 using Il2CppAssets.Scripts.Utils;
 using Il2CppAssets.Scripts.Models.Towers.Filters;
+using BTD_Mod_Helper.Api.Display;
 
 namespace Eevee.Upgrades.MiddlePath
 {
@@ -25,6 +26,15 @@ namespace Eevee.Upgrades.MiddlePath
             attackModel.weapons[0].projectile = Game.instance.model.GetTowerFromId("Gwendolin 15").GetAttackModel().weapons[0].projectile.Duplicate();
             towerModel.GetWeapon().rate *= 0.5f;
             attackModel.weapons[0].projectile.SetHitCamo(true);
+            towerModel.ApplyDisplay<FlareonDisplay>();
+        }
+    }
+    public class FlareonDisplay:ModDisplay
+    {
+        public override string BaseDisplay => Generic2dDisplay;
+        public override void ModifyDisplayNode(UnityDisplayNode node)
+        {
+            NodeLoader.NodeLoader.LoadNode(node, "Flareon", mod);
         }
     }
 }

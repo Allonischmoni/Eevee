@@ -5,6 +5,8 @@ using BTD_Mod_Helper.Api.Towers;
 using BTD_Mod_Helper.Extensions;
 using Il2CppAssets.Scripts.Models.Towers;
 using Il2CppAssets.Scripts.Models.TowerSets;
+using BTD_Mod_Helper.Api.Display;
+using NodeLoader;
 
 [assembly: MelonInfo(typeof(Eevee.Main), ModHelperData.Name, ModHelperData.Version, ModHelperData.RepoOwner)]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
@@ -40,27 +42,16 @@ namespace Eevee
 
             var projectile = attackModel.weapons[0].projectile;
             projectile.pierce += 2;
+            towerModel.ApplyDisplay<EeveeDisplay>();
         }
-        public override bool Use2DModel => true;
-        public override float Get2DScale(int[] tiers)
+        
+    }
+    public class EeveeDisplay : ModDisplay
+    {
+        public override string BaseDisplay => Generic2dDisplay;
+        public override void ModifyDisplayNode(UnityDisplayNode node)
         {
-            return 0.4f;
-        }
-        public override string Get2DTexture(int[] tiers)
-        {
-            if(tiers[0] == 3||tiers[0]==4||tiers[0]==5)
-            {
-                return "Blitza";
-            }
-            if (tiers[1] == 3 || tiers[1] == 4 || tiers[1] == 5)
-            {
-                return "Flamara";
-            }
-            if (tiers[2] == 3 || tiers[2] == 4 || tiers[2] == 5)
-            {
-                return "Glatiola";
-            }
-            return "EeveeBaseDisplay";
+            NodeLoader.NodeLoader.LoadNode(node, "Eevee", mod);
         }
     }
 }

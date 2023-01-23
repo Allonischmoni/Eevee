@@ -3,6 +3,7 @@ using BTD_Mod_Helper.Api.Towers;
 using BTD_Mod_Helper.Extensions;
 using Il2CppAssets.Scripts.Unity;
 using Il2CppAssets.Scripts.Utils;
+using BTD_Mod_Helper.Api.Display;
 
 namespace Eevee.Upgrades.TopPath
 {
@@ -23,6 +24,15 @@ namespace Eevee.Upgrades.TopPath
             attackModel.range += 10;
             attackModel.weapons[0].projectile = Game.instance.model.GetTowerFromId("Druid-200").GetAttackModel().weapons[1].projectile.Duplicate();
             attackModel.weapons[0].projectile.SetHitCamo(true);
+            towerModel.ApplyDisplay<JolteonDisplay>();
+        }
+    }
+    public class JolteonDisplay : ModDisplay
+    {
+        public override string BaseDisplay => Generic2dDisplay;
+        public override void ModifyDisplayNode(UnityDisplayNode node)
+        {
+            NodeLoader.NodeLoader.LoadNode(node, "Jolteon", mod);
         }
     }
 }

@@ -3,6 +3,7 @@ using BTD_Mod_Helper.Api.Towers;
 using BTD_Mod_Helper.Extensions;
 using Il2CppAssets.Scripts.Unity;
 using Il2CppAssets.Scripts.Utils;
+using BTD_Mod_Helper.Api.Display;
 
 namespace Eevee.Upgrades.MiddlePath
 {
@@ -21,6 +22,15 @@ namespace Eevee.Upgrades.MiddlePath
             attackModel.weapons[0].projectile = Game.instance.model.GetTowerFromId("IceMonkey-003").GetAttackModel().weapons[0].projectile.Duplicate();
             towerModel.GetWeapon().rate *= 0.8f;
             attackModel.weapons[0].projectile.SetHitCamo(true);
+            towerModel.ApplyDisplay<GlaceonDisplay>();
+        }
+    }
+    public class GlaceonDisplay:ModDisplay
+    {
+        public override string BaseDisplay => Generic2dDisplay;
+        public override void ModifyDisplayNode(UnityDisplayNode node)
+        {
+            NodeLoader.NodeLoader.LoadNode(node, "Glaceon", mod);
         }
     }
 }
